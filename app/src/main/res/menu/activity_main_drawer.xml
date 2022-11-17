@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_about_us"
+            android:icon="@drawable/about_us"
+            android:checkableBehavior="single"
+            android:title="@string/about_us" />
+
+<!--<item android:id="@+id/theme"
+            android:icon="@drawable/light_dark_1"
+            android:title="@string/theme"/>-->
+
+
+ <item android:id="@+id/settings"
+            android:icon="@drawable/settings1"
+            android:title="@string/setting"/>
+
+        <item
+            android:id="@+id/nav_share_app"
+            android:icon="@drawable/share"
+            android:title="@string/share_app"/>
+
+        <item
+            android:id="@+id/nav_rate_us"
+            android:icon="@drawable/ic_staron"
+            android:title="@string/rateus"/>
+
+        <item
+            android:id="@+id/nav_privacy"
+            android:icon="@drawable/policy"
+            android:title="@string/privacy_policy"/>
+
+        <item
+            android:id="@+id/nav_remove_ads"
+            android:icon="@drawable/primium"
+            android:title="@string/remove_ads"/>
+
+    </group>
+</menu>

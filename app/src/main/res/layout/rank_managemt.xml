@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_350sdp"
+    android:layout_marginLeft="@dimen/_5sdp"
+    android:layout_marginRight="@dimen/_5sdp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_60sdp"
+        android:orientation="vertical">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvDialogTitle"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_5sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_23sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/rate_us"
+                    android:textColor="@color/black"
+
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDialogDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:backgroundTintMode="screen"
+                    android:gravity="start"
+
+                    android:text="@string/text_feedback_message"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        android:id="@+id/arrow"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_140sdp"
+                        android:src="@drawable/arrow" />
+
+
+                    <ImageView
+                        android:id="@+id/arrowpart"
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:src="@drawable/arrowpart" />
+
+
+                </LinearLayout>
+
+                <com.example.pdfreaderrr.utills.CustomRatingView
+                    android:id="@+id/customRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    app:currentStar="0"
+                    app:layout_constraintBottom_toTopOf="@+id/tvCancel"
+                    app:layout_constraintEnd_toEndOf="@+id/rateustxt"
+                    app:layout_constraintStart_toStartOf="@+id/rateustxt"
+                    app:layout_constraintTop_toBottomOf="@+id/rateustxt"
+                    app:padding="@dimen/_8sdp"
+                    app:starHeight="@dimen/_30sdp"
+                    app:starWidth="@dimen/_30sdp" />
+
+                <!--            <findmyphone.whistleapp.phonefinder.phonetracker.CustomRatingView-->
+                <!--                android:id="@+id/customRatingBar"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_gravity="center"-->
+                <!--                android:layout_marginTop="24dp"-->
+                <!--                android:layout_marginBottom="16dp"-->
+                <!--                app:currentStar="0"-->
+                <!--                app:layout_constraintBottom_toTopOf="@+id/tvCancel"-->
+                <!--                app:layout_constraintEnd_toEndOf="@+id/rateustxt"-->
+                <!--                app:layout_constraintStart_toStartOf="@+id/rateustxt"-->
+                <!--                app:layout_constraintTop_toBottomOf="@+id/rateustxt"-->
+                <!--                app:padding="@dimen/_10sdp"-->
+                <!--                app:starHeight="@dimen/_30sdp"-->
+                <!--                app:starWidth="@dimen/_30sdp" />-->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginBottom="@dimen/_10sdp">
+
+                    <TextView
+                        android:id="@+id/later"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginRight="@dimen/_16sdp"
+                        android:gravity="center_vertical"
+                        android:text="@string/later"
+                        android:textAllCaps="true"
+                        android:textColor="@color/purple_500"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/tvDialogTitle"
+        android:layout_width="@dimen/_85sdp"
+        android:layout_height="@dimen/_85sdp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/infor"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp" />
+</RelativeLayout>

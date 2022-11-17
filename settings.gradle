@@ -1,0 +1,65 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+
+        gradlePluginPortal()
+        google()
+
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+
+
+        mavenCentral()
+        jcenter()
+        mavenCentral()
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+        google()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+            maven { url 'https://jitpack.io' }
+            mavenCentral()
+            maven {
+                url "https://repo.commonsware.com.s3.amazonaws.com"
+            }
+
+        }
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+
+        gradlePluginPortal()
+        google()
+
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+
+
+        mavenCentral()
+        jcenter()
+        mavenCentral()
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+        google()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+            maven { url 'https://jitpack.io' }
+            mavenCentral()
+            maven {
+                url "https://repo.commonsware.com.s3.amazonaws.com"
+            }
+
+        }
+    }
+}
+rootProject.name = "PdfReaderrr"
+include ':app'

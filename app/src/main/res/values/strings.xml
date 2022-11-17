@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">PdfReaderrr</string>
+    <string name="files">Files</string>
+    <string name="recents">Recents</string>
+    <string name="fav">Favorite</string>
+    <string name="con">Continue</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="skip">Skip</string>
+    <string name="title_onboarding_1">Tv &amp; phone must be connected with same internet</string>
+    <string name="title_onboarding_2">Enable Miracast Display on tv</string>
+    <string name="title_onboarding_3">Click on the next page, enable Wireless Display &amp; choose your Tv </string>
+    <string name="wireless_display">sgj;pdgjp</string>
+    <string name="share_app_message" />
+    <string name="choose_one" />
+    <string name="about_us">About us</string>
+    <string name="language">Localization</string>
+    <string name="theme">theme</string>
+    <string name="share_app">Share App</string>
+    <string name="rateus">"Rate us "</string>
+    <string name="privacy_policy">Policy</string>
+    <string name="share_chooser">Select app to send message…</string>
+    <string name="pdf_type" translatable="false">application/pdf</string>
+    <string name="i_have_attached_pdfs_to_this_message">I have attached file(s) to this message</string>
+
+    <string name="remove_ads">Remove ads</string>
+    <string name="header_text">jhkjh</string>
+    <string name="todo">todo</string>
+    <string name="rate_us">Rate us</string>
+    <string name="text_feedback_message">Whould you like to rate us?</string>
+    <string name="exit">Exit</string>
+    <string name="later">Later</string>
+    <string name="Print">Print</string>
+    <string name="verticalview">VerticalView</string>
+    <string name="light_mode">light</string>
+    <string name="goto_page">go to page </string>
+    <string name="share">Share</string>
+    <string name="go">Go</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="configurations">Configurations</string>
+    <string name="upgrade_now">Upgrade Now</string>
+    <string name="select_tone">hkjh</string>
+    <string name="adaptive_mode">djfhksdjfh</string>
+    <string name="whistle_clap_recognize_is_turned_off_while_using_app">uifyhkifdhkjhkdsjfdkfh</string>
+    <string name="length">kjhgkj</string>
+    <string name="volume">jhkjh</string>
+    <string name="functionality">lgjldkfgjfd</string>
+    <string name="setting">Settings</string>
+    <string name="pdf_reader_app_is_supported_by_ads_but_now_you_can_remove_them">,bkmjgkjgkgkjgjhgjhg</string>
+</resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -21,9 +22,11 @@
 
 
             <ImageView
-                android:layout_width="@dimen/_30sdp"
+                android:layout_width="@dimen/_25sdp"
                 android:layout_gravity="center"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_6sdp"
+
                 android:src="@drawable/printer"
                 android:padding="@dimen/_4sdp" />
 
@@ -52,6 +55,7 @@
             <ImageView
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_6sdp"
                 android:layout_gravity="center"
                 android:src="@drawable/horizontal_and_vertical_view"
                 android:padding="@dimen/_4sdp" />
@@ -83,8 +87,9 @@
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/grey"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
                 android:tint="@color/black" />
 
 
@@ -111,23 +116,25 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_70sdp"
         android:padding="@dimen/_5sdp"
-        android:weightSum="3"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat">
+        android:weightSum="2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat"
+        tools:layout_editor_absoluteX="-67dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/share"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
             android:padding="@dimen/_5sdp"
-
-
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat">
 
             <ImageView
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:src="@drawable/share"
-                android:padding="@dimen/_4sdp" />
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:padding="@dimen/_4sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/share" />
 
 
             <TextView
@@ -147,14 +154,18 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/gotopage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
             android:padding="@dimen/_5sdp"
 
             >
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_staron"
                 android:padding="@dimen/_4sdp" />
 
             <TextView
@@ -162,7 +173,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_5sdp"
-                android:text="cvgdfg"
+                android:text="Favourite"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
 

@@ -59,6 +59,15 @@ class MainActivity : AppCompatActivity(), ButtonClick,
      //   startActivity(Intent(this@MainActivity, SettingConActivity::class.java))
 
         drawer_layout = findViewById(R.id.drawer_layout)
+
+        val navView: BottomNavigationView = nav_view
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        setNavigationViewListener()
+        navView.setupWithNavController(navController)
+
+
+/*
+
         if (checkPermission()) {
             val navView: BottomNavigationView = nav_view
             val navController = findNavController(R.id.nav_host_fragment_activity_main)
@@ -71,6 +80,7 @@ class MainActivity : AppCompatActivity(), ButtonClick,
             editNameDialogFragment.show(fm, "permission")
         }
 
+*/
 
 
 

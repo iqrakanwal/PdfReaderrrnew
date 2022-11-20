@@ -5,6 +5,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pdfreaderrr.PdfModel
@@ -21,21 +22,22 @@ class VideosAdaptor(
     inner class VideoItem(view: View) : RecyclerView.ViewHolder(view) {
         var name: TextView = view.findViewById(R.id.name)
         var size: TextView = view.findViewById(R.id.size)
-        var container: View? = view
+        var options: ImageView = view.findViewById(R.id.option)
+        var fav: ImageView = view.findViewById(R.id.fav)
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoItem {
         var view: View
-        if (PreferencesUtility.getInstance(context).isAlbumsInGrid()){
+        /*  if (PreferencesUtility.getInstance(context).isAlbumsInGrid()){
 
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_folder_grid, null)
 
         }
-        else{
+        else{*/
 
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pdf_items, null)
-        }
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pdf_list_items, null)
+   // }
         return VideoItem(view)
     }
 

@@ -29,9 +29,9 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class HomeFragment : Fragment(), SortingListeners {
     var videosAdaptor: VideosAdaptor? = null
-    lateinit var  layoutManager: LinearLayoutManager
+    lateinit var layoutManager: LinearLayoutManager
     private val model: MainViewModel by sharedViewModel()
-    private var array:ArrayList<PdfModel> = arrayListOf()
+    private var array: ArrayList<PdfModel> = arrayListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -67,58 +67,54 @@ class HomeFragment : Fragment(), SortingListeners {
 
         model.files?.observe(requireActivity()) {
 
-Log.e("ghhgh","true")
+            Log.e("ghhgh", "true")
+            /*           if (PreferencesUtility.getInstance(activity).isAlbumsInGrid()) {
+                           val gridManager = GridLayoutManager(activity, 2)
+                           videos.setLayoutManager(
+                               gridManager
+                           )
+                           array.addAll(it)
+                           videosAdaptor = VideosAdaptor(requireContext(), array, object:PdfClickedListener{
+                               override fun onPdfCLicked(uri: Uri) {
+                                   val intent = Intent(requireContext(), PdfShowingScreen::class.java)
+                                   intent.putExtra("Character", uri.toString())
+                                   startActivity(intent)
+                               }
 
+                           })
 
-            if (PreferencesUtility.getInstance(activity).isAlbumsInGrid()) {
-                val gridManager = GridLayoutManager(activity, 2)
-                videos.setLayoutManager(
-                    gridManager
-                )
-                array.addAll(it)
-                videosAdaptor = VideosAdaptor(requireContext(), array, object:PdfClickedListener{
-                    override fun onPdfCLicked(uri: Uri) {
-                        val intent = Intent(requireContext(), PdfShowingScreen::class.java)
-                        intent.putExtra("Character", uri.toString())
-                        startActivity(intent)
-                    }
+                       } else {*/
+            layoutManager =
+                LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
 
-                })
-
-
-            } else {
-                layoutManager= LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-
-                val dividerItemDecoration = DividerItemDecoration(
+            /*    val dividerItemDecoration = DividerItemDecoration(
                     videos.getContext(),
                     layoutManager.getOrientation()
                 )
-                videos.addItemDecoration(dividerItemDecoration)
-                videos.setLayoutManager(
-                    layoutManager
-                )
+                videos.addItemDecoration(dividerItemDecoration)*/
+            videos.setLayoutManager(
+                layoutManager
+            )
 
-                array.addAll(it)
-                videosAdaptor = VideosAdaptor(requireContext(), array, object:PdfClickedListener{
-                    override fun onPdfCLicked(uri: Uri) {
-                        val intent = Intent(requireContext(), PdfShowingScreen::class.java)
-                        intent.putExtra("Character", uri.toString())
-                        startActivity(intent)
-                    }
+            array.addAll(it)
+            videosAdaptor = VideosAdaptor(requireContext(), array, object : PdfClickedListener {
+                override fun onPdfCLicked(uri: Uri) {
+                    val intent = Intent(requireContext(), PdfShowingScreen::class.java)
+                    intent.putExtra("Character", uri.toString())
+                    startActivity(intent)
+                }
 
-                })
+            })
 
-
-            }
-           // videos.setAdapter(videosAdaptor)
-          //  videosAdaptor?.notifyDataSetChanged()
-
-            videos.adapter=videosAdaptor
-            //Log.e("jdkdjf", "${it.size}")
+            videos.adapter = videosAdaptor
         }
+        // videos.setAdapter(videosAdaptor)
+        //  videosAdaptor?.notifyDataSetChanged()
 
 
+        //Log.e("jdkdjf", "${it.size}")
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,

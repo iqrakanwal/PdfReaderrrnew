@@ -13,7 +13,7 @@
         android:contentDescription="@string/app_name"
         android:maxHeight="@dimen/_150sdp"
         android:padding="@dimen/_15sdp"
-        android:src="@drawable/ic_storage"
+        android:src="@drawable/permission_haeder"
         android:layout_marginTop="@dimen/_20sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.53"

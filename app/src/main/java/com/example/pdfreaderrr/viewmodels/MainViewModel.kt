@@ -13,64 +13,52 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlin.coroutines.EmptyCoroutineContext.get
 
-class MainViewModel(var application: Context,var filesRepositories: FilesRepositories):ViewModel() {
- public var files :LiveData<ArrayList<PdfModel>>? = filesRepositories.getPdfFile()
- private val uiDataStore = UIModePreference(application)
+class MainViewModel(var application: Context, var filesRepositories: FilesRepositories) :
+    ViewModel() {
+    public var files: LiveData<ArrayList<PdfModel>>? = filesRepositories.getPdfFile()
+    private val uiDataStore = UIModePreference(application)
+
+    val isDarkTheme get() = filesRepositories.isDarkTheme()
 
 
- /**
-  * Load All Files
-  */
- //   val isDarkTheme get() = uiDataStore.isNightMode
- val isDarkTheme get() = filesRepositories.isDarkTheme()
+    fun setDarkTheme(darktheme: String) {
+        filesRepositories.setDarkTheme(darktheme)
+    }
 
- /*   val getTheme get() = uiDataStore.get*/
- /*   fun getTheme() = run {
-        var value = DEFAULT
-        runBlocking {
-            value = uiDataStore.getValue()
+    val getUIMode = uiDataStore.uiMode
+    val getVerticalView = uiDataStore.isVerticale
+    val getNightMode = uiDataStore.isNightMode
+
+    fun saveToDataStore(isNightMode: Boolean) {
+        viewModelScope.launch(Dispatchers.IO) {
+            uiDataStore.saveToDataStore(isNightMode)
         }
-        value
-    }*/
+    }
+
+    fun saveToNightMode(isNightMode: Boolean) {
+        viewModelScope.launch(Dispatchers.IO) {
+            uiDataStore.saveNightMode(isNightMode)
+        }
+    }
+
+    fun saveView(isVertial: Boolean) {
+        viewModelScope.launch(Dispatchers.IO) {
+            uiDataStore.saveIsVerticalView(isVertial)
+        }
+
+    }
 
 
- fun setDarkTheme(darktheme: String) {
-  filesRepositories.setDarkTheme(darktheme)
- }
- val getUIMode = uiDataStore.uiMode
- val getVerticalView = uiDataStore.isVerticale
- val getNightMode = uiDataStore.isNightMode
-
- fun saveToDataStore(isNightMode: Boolean) {
-  viewModelScope.launch(Dispatchers.IO) {
-   uiDataStore.saveToDataStore(isNightMode)
-  }
- }
-
- fun saveToNightMode(isNightMode: Boolean) {
-  viewModelScope.launch(Dispatchers.IO) {
-   uiDataStore.saveNightMode(isNightMode)
-  }
- }
-
- fun saveView(isVertial: Boolean) {
-  viewModelScope.launch(Dispatchers.IO) {
-   uiDataStore.saveIsVerticalView(isVertial)
-  }
-
- }
+    fun setTheme(theme: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            uiDataStore.setTheme(theme)
+        }
 
 
- fun setTheme(theme: String) {
-  viewModelScope.launch(Dispatchers.IO) {
-   uiDataStore.setTheme(theme)
-  }
+    }
 
-
- }
-
- suspend fun getvalue() {
-  Log.e("fffffffffd", getUIMode.first().toString())
- }
+    suspend fun getvalue() {
+        Log.e("fffffffffd", getUIMode.first().toString())
+    }
 
 }

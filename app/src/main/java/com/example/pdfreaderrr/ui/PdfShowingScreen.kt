@@ -37,7 +37,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
 import java.util.*
 
-class PdfShowingScreen : AppCompatActivity() , OnPageChangeListener, OnLoadCompleteListener,
+class PdfShowingScreen : AppCompatActivity(), OnPageChangeListener, OnLoadCompleteListener,
     OnPageErrorListener, ButtonClick, PdfClickedListener {
     private var initialLayoutComplete = false
     lateinit var ads_container_layout: LinearLayout
@@ -53,21 +53,21 @@ class PdfShowingScreen : AppCompatActivity() , OnPageChangeListener, OnLoadCompl
     private var ontouch = 0
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pdf_showing_screen)
         if (Build.VERSION.SDK_INT >= 21) {
             val window = this.window
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.decorView.systemUiVisibility =View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
             window.statusBarColor = this.resources.getColor(R.color.white)
         }
         setContentView(R.layout.activity_pdf_showing_screen)
         setSupportActionBar(toobar);
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar()?.setHomeButtonEnabled(true);
+
         val sports = intent.getStringExtra("Character")
         file = File(sports!!)
         uri = Uri.fromFile(file)
@@ -98,8 +98,6 @@ class PdfShowingScreen : AppCompatActivity() , OnPageChangeListener, OnLoadCompl
         lifecycleScope.launch {
             loadPdf()
         }
-
-
 
 
     }
@@ -180,27 +178,26 @@ class PdfShowingScreen : AppCompatActivity() , OnPageChangeListener, OnLoadCompl
         val id = item.itemId
         return when (id) {
 
-            R.id.share -> {
+            R.id.options -> {
                 /*        val fm: FragmentManager = supportFragmentManager
                         val editNameDialogFragment: RemainingOptions = RemainingOptions()
                         editNameDialogFragment.show(fm, "RemainingOptions")*/
 
                 val bottomSheetDialog = BottomSheetDialog(this)
                 bottomSheetDialog.setContentView(R.layout.bottom_sheet_options)
-
-                val print = bottomSheetDialog.findViewById<LinearLayoutCompat>(R.id.print)
+                //    val print = bottomSheetDialog.findViewById<LinearLayoutCompat>(R.id.print)
 
                 val gotopage = bottomSheetDialog.findViewById<LinearLayoutCompat>(R.id.gotopage)
                 val allignemtn =
                     bottomSheetDialog.findViewById<LinearLayoutCompat>(R.id.greyscale)
                 val share = bottomSheetDialog.findViewById<LinearLayoutCompat>(R.id.share)
                 val switchgrey = bottomSheetDialog.findViewById<SwitchCompat>(R.id.grey)
-                print?.setOnClickListener {
-                    printFile(File(uri.toString()))
-                    bottomSheetDialog.dismiss()
+                /* print?.setOnClickListener {
+                     printFile(File(uri.toString()))
+                     bottomSheetDialog.dismiss()
 
 
-                }
+                 }*/
                 gotopage?.setOnClickListener {
                     val fm: FragmentManager = supportFragmentManager
                     val editNameDialogFragment: GotoDailog =
@@ -281,8 +278,10 @@ class PdfShowingScreen : AppCompatActivity() , OnPageChangeListener, OnLoadCompl
                 bottomSheetDialog.show()
                 true
             }
-            R.id.delete ->{
-
+            R.id.print -> {
+                return true
+            }
+            R.id.share -> {
                 return true
             }
             else -> super.onOptionsItemSelected(item)
@@ -369,67 +368,66 @@ class PdfShowingScreen : AppCompatActivity() , OnPageChangeListener, OnLoadCompl
     }
 
 
-  /*  private fun adsConfig() {
-        let { i ->
-            fbBannerAds = FbBannerAds(i)
-            admobBannerAds = AdmobBannerAds(i)
-            when (prioritySmallBanner) {
-                1 -> {
-                    Log.d(AD_TAG, "Call FB Banner")
-                    fbBannerAds.loadBannerAds(ads_container_layout,
-                        ads_place_holder,
-                        loading_layout,
-                        getString(R.string.facebook_banner),
-                        smallBannerActive,
-                        false,
-                        isInternetConnected(i),
-                        object : FbBannerCallBack {
-                            override fun onError(adError: String) {}
+    /*  private fun adsConfig() {
+          let { i ->
+              fbBannerAds = FbBannerAds(i)
+              admobBannerAds = AdmobBannerAds(i)
+              when (prioritySmallBanner) {
+                  1 -> {
+                      Log.d(AD_TAG, "Call FB Banner")
+                      fbBannerAds.loadBannerAds(ads_container_layout,
+                          ads_place_holder,
+                          loading_layout,
+                          getString(R.string.facebook_banner),
+                          smallBannerActive,
+                          false,
+                          isInternetConnected(i),
+                          object : FbBannerCallBack {
+                              override fun onError(adError: String) {}
 
-                            override fun onAdLoaded() {}
+                              override fun onAdLoaded() {}
 
-                            override fun onAdClicked() {}
+                              override fun onAdClicked() {}
 
-                            override fun onLoggingImpression() {}
+                              override fun onLoggingImpression() {}
 
-                        })
-                }
-                2 -> {
-                    Log.d(AD_TAG, "Call Admob Banner")
-                    admobBannerAds.loadBannerAds(ads_container_layout,
-                        ads_place_holder,
-                        loading_layout,
-                        getString(R.string.Banner),
-                        smallBannerActive,
-                        false,
-                        isInternetConnected(i),
-                        object : BannerCallBack {
-                            override fun onAdFailedToLoad(adError: String) {
-                            }
+                          })
+                  }
+                  2 -> {
+                      Log.d(AD_TAG, "Call Admob Banner")
+                      admobBannerAds.loadBannerAds(ads_container_layout,
+                          ads_place_holder,
+                          loading_layout,
+                          getString(R.string.Banner),
+                          smallBannerActive,
+                          false,
+                          isInternetConnected(i),
+                          object : BannerCallBack {
+                              override fun onAdFailedToLoad(adError: String) {
+                              }
 
-                            override fun onAdLoaded() {
+                              override fun onAdLoaded() {
 
-                                Log.e("load", "load")
-                                ads_container_layout.visibility = View.VISIBLE
+                                  Log.e("load", "load")
+                                  ads_container_layout.visibility = View.VISIBLE
 
-                            }
+                              }
 
-                            override fun onAdImpression() {
-                            }
+                              override fun onAdImpression() {
+                              }
 
-                        })
+                          })
 
-                }
-                else -> {
-                    ads_container_layout.visibility = View.GONE
-                }
-            }
-        }
+                  }
+                  else -> {
+                      ads_container_layout.visibility = View.GONE
+                  }
+              }
+          }
 
-    }
-*/
+      }
+  */
     fun printFile(file: File) {
-
 
 
 /*
@@ -446,13 +444,16 @@ class PdfShowingScreen : AppCompatActivity() , OnPageChangeListener, OnLoadCompl
     override fun clicked() {
 
 
-
-
     }
 
     override fun onPdfCLicked(uri: Uri) {
     }
 
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 
 
 }

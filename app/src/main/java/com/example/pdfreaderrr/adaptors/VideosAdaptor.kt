@@ -20,24 +20,23 @@ class VideosAdaptor(
 ) :
     RecyclerView.Adapter<VideosAdaptor.VideoItem>() {
     inner class VideoItem(view: View) : RecyclerView.ViewHolder(view) {
-        var name: TextView = view.findViewById(R.id.name)
-        var size: TextView = view.findViewById(R.id.size)
-        var options: ImageView = view.findViewById(R.id.option)
-        var fav: ImageView = view.findViewById(R.id.fav)
-
+        var name: TextView = view.findViewById(R.id.namePDF)
+        var size: TextView = view.findViewById(R.id.sizePDF)
+       // var options: ImageView = view.findViewById(R.id.option)
+       // var fav: ImageView = view.findViewById(R.id.fav)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoItem {
         var view: View
-        /*  if (PreferencesUtility.getInstance(context).isAlbumsInGrid()){
+          if (PreferencesUtility.getInstance(context).isAlbumsInGrid()){
 
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_folder_grid, null)
 
         }
-        else{*/
+        else{
 
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pdf_list_items, null)
-   // }
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_view_pdf, null)
+   }
         return VideoItem(view)
     }
 

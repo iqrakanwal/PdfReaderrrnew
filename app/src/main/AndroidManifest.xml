@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.pdfreaderrr">
+
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -22,6 +23,16 @@
         android:roundIcon="@drawable/ic_preview"
         android:supportsRtl="true"
         android:theme="@style/Theme.PdfReaderrr">
+        <activity
+            android:name=".ui.TakePermissionActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+
+
+
+        </activity>
         <activity
             android:name=".ui.GetReadyActivity"
             android:exported="false">
@@ -47,20 +58,16 @@
             android:exported="false" />
         <activity
             android:name=".ui.SplashActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
         </activity>
     </application>
 

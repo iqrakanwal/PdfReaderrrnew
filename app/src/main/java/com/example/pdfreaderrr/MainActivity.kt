@@ -17,6 +17,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -30,7 +31,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.pdfreaderrr.dialogs.*
 import com.example.pdfreaderrr.interfaces.ButtonClick
 import com.example.pdfreaderrr.interfaces.ExitDialogCallbacks
+import com.example.pdfreaderrr.interfaces.FileCreationInterface
 import com.example.pdfreaderrr.ui.SettingConActivity
+import com.example.pdfreaderrr.utills.Constants
 import com.example.pdfreaderrr.utills.FileTypes
 import com.example.pdfreaderrr.utills.toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -42,52 +45,42 @@ import java.io.File
 
 
 class MainActivity : AppCompatActivity(), ButtonClick,
-    OnNavigationItemSelectedListener {
+    OnNavigationItemSelectedListener, FileCreationInterface {
     private val SELECT_PICTURE = 1
     lateinit var drawer_layout: DrawerLayout
     val PERMISSION_REQUEST_CODE = 2296
-
     private var selectedImagePath: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            window.decorView.systemUiVisibility =View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             window.statusBarColor = Color.WHITE
         }
         setContentView(R.layout.drawerlayout)
-
-     //   startActivity(Intent(this@MainActivity, SettingConActivity::class.java))
-
+        //   startActivity(Intent(this@MainActivity, SettingConActivity::class.java))
         drawer_layout = findViewById(R.id.drawer_layout)
-
         val navView: BottomNavigationView = nav_view
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         setNavigationViewListener()
         navView.setupWithNavController(navController)
 
 
-/*
-
-        if (checkPermission()) {
-            val navView: BottomNavigationView = nav_view
-            val navController = findNavController(R.id.nav_host_fragment_activity_main)
-            setNavigationViewListener()
-            navView.setupWithNavController(navController)
-        } else {
-            val fm: FragmentManager = supportFragmentManager
-            val editNameDialogFragment: PermissionDialog =
-                PermissionDialog(this)
-            editNameDialogFragment.show(fm, "permission")
-        }
-
-*/
 
 
+        /*   if (checkPermission()) {
+               val navView: BottomNavigationView = nav_view
+               val navController = findNavController(R.id.nav_host_fragment_activity_main)
+               setNavigationViewListener()
+               navView.setupWithNavController(navController)
+           } else {
+
+           }
+   */
 
 
-    /*    val fm: FragmentManager = supportFragmentManager
-        val editNameDialogFragment: PermissionDialog = PermissionDialog(this)
-        editNameDialogFragment.show(fm, "about")*/
+        /*    val fm: FragmentManager = supportFragmentManager
+            val editNameDialogFragment: PermissionDialog = PermissionDialog(this)
+            editNameDialogFragment.show(fm, "about")*/
         // setupActionBarWithNavController(navController, appbarlayotu)
         // Passing each menu ID as a set of Ids because each
 
@@ -102,14 +95,17 @@ class MainActivity : AppCompatActivity(), ButtonClick,
 
         fkfk.setOnClickListener {
 
+            val fm: FragmentManager = supportFragmentManager
+            val editNameDialogFragment: FileCreatinDialog = FileCreatinDialog(this)
+            editNameDialogFragment.show(fm, "exit")
 
-        //    val intent = Intent()
-        //    intent.type = "image/*"
-          //  intent.action = Intent.ACTION_GET_CONTENT
-           // startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE)
+
+
+
+
+
         }
 
-        loadAllFilesToDatabase()
 
     }
 
@@ -130,6 +126,7 @@ class MainActivity : AppCompatActivity(), ButtonClick,
         } catch (e: ActivityNotFoundException) {
         }
     }
+/*
     private fun checkPermission(): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             Environment.isExternalStorageManager()
@@ -143,86 +140,9 @@ class MainActivity : AppCompatActivity(), ButtonClick,
             result == PackageManager.PERMISSION_GRANTED && result1 == PackageManager.PERMISSION_GRANTED
         }
     }
-    private fun requestPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            try {
-                val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
-                intent.addCategory("android.intent.category.DEFAULT")
-                intent.data = Uri.parse(String.format("package:%s", applicationContext.packageName))
-                startActivityForResult(intent, 2296)
-            } catch (e: java.lang.Exception) {
-                val intent = Intent()
-                intent.action = Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION
-                startActivityForResult(intent, 2296)
-            }
-        } else {
-            //below android 11
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ),
-                PERMISSION_REQUEST_CODE
-            )
-        }
-    }
+*/
 
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            PERMISSION_REQUEST_CODE -> if (grantResults.size > 0) {
-                val READ_EXTERNAL_STORAGE = grantResults[0] == PackageManager.PERMISSION_GRANTED
-                val WRITE_EXTERNAL_STORAGE = grantResults[1] == PackageManager.PERMISSION_GRANTED
-                if (READ_EXTERNAL_STORAGE && WRITE_EXTERNAL_STORAGE) {
-                    val navView: BottomNavigationView = nav_view
-                    val navController = findNavController(R.id.nav_host_fragment_activity_main)
-                    setNavigationViewListener()
-                    navView.setupWithNavController(navController)
-                } else {
-
-                }
-            }
-        }
-
-
-    }
-
-    override fun clicked() {
-        this.toast("dfg")
-        requestPermission()
-  /*      PermissionX.init(this)
-            .permissions(
-                Manifest.permission.READ_CONTACTS,
-                Manifest.permission.CAMERA,
-                Manifest.permission.CALL_PHONE
-            ).onForwardToSettings { scope, deniedList ->
-                scope.showForwardToSettingsDialog(
-                    deniedList,
-                    "You need to allow necessary permissions in Settings manually",
-                    "OK",
-                    "Cancel"
-                )
-            }
-            .request { allGranted, grantedList, deniedList ->
-                if (allGranted) {
-
-
-                } else {
-                    Toast.makeText(
-                        this,
-                        "These permissions are denied: $deniedList",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-            }*/
-
-    }
 
     private fun setNavigationViewListener() {
         val navigationView = findViewById<View>(R.id.nav_view_drawer) as NavigationView
@@ -234,29 +154,28 @@ class MainActivity : AppCompatActivity(), ButtonClick,
     }
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK) {
-            if (requestCode == SELECT_PICTURE) {
-                val selectedImageUri = data?.data
-                Log.e("file", "${selectedImageUri}")
-            }
-        }else   if (requestCode == 2296) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                if (Environment.isExternalStorageManager()) {
-                    val navView: BottomNavigationView = nav_view
-                    val navController = findNavController(R.id.nav_host_fragment_activity_main)
-                    setNavigationViewListener()
-                    navView.setupWithNavController(navController)
+    /*   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+           super.onActivityResult(requestCode, resultCode, data)
+           if (resultCode == RESULT_OK) {
+               if (requestCode == SELECT_PICTURE) {
+                   val selectedImageUri = data?.data
+                   Log.e("file", "${selectedImageUri}")
+               }
+           }else   if (requestCode == 2296) {
+               if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                   if (Environment.isExternalStorageManager()) {
+                       val navView: BottomNavigationView = nav_view
+                       val navController = findNavController(R.id.nav_host_fragment_activity_main)
+                       setNavigationViewListener()
+                       navView.setupWithNavController(navController)
 
-                } else {
-                    Toast.makeText(this, "Allow permission for storage access!", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
-        }
-    }
-
+                   } else {
+                       Toast.makeText(this, "Allow permission for storage access!", Toast.LENGTH_SHORT)
+                           .show()
+                   }
+               }
+           }
+       }*/
 
     fun getPath(uri: Uri?): String? {
         // just some safety built in
@@ -431,7 +350,6 @@ class MainActivity : AppCompatActivity(), ButtonClick,
             }).show(supportFragmentManager!!, "jdfsdjfn")
 
 
-
     }
 
 
@@ -439,7 +357,6 @@ class MainActivity : AppCompatActivity(), ButtonClick,
         menuInflater.inflate(R.menu.main_menu1, menu)
         return true
     }
-
 
 
     private fun removeAds() {
@@ -459,13 +376,13 @@ class MainActivity : AppCompatActivity(), ButtonClick,
                 true
             }
             R.id.settings -> {
-              startActivity(Intent(this@MainActivity, SettingConActivity::class.java))
+                startActivity(Intent(this@MainActivity, SettingConActivity::class.java))
                 true
             }
-        /*    R.id.theme -> {
+            /*    R.id.theme -> {
 
-                true
-            }*/
+                    true
+                }*/
             R.id.nav_share_app -> {
                 true
             }
@@ -499,7 +416,6 @@ class MainActivity : AppCompatActivity(), ButtonClick,
         if (id == R.id.crown) {
 
 
-
             Toast.makeText(this, "sdfd", Toast.LENGTH_SHORT).show()
 
 
@@ -516,6 +432,15 @@ class MainActivity : AppCompatActivity(), ButtonClick,
 
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun clicked() {
+    }
+
+    override fun close() {
+    }
+
+    override fun create(path: String) {
     }
 }
 

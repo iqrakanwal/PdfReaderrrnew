@@ -13,7 +13,6 @@ class OnboardingViewPagerAdapter(
     private val context: Context
 ) :
     FragmentStateAdapter(fragmentActivity) {
-
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> OnboardingFragment.newInstance(
@@ -30,7 +29,6 @@ class OnboardingViewPagerAdapter(
             )
         }
     }
-
     override fun getItemCount(): Int {
         return 3
     }

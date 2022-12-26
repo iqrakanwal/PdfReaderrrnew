@@ -2,55 +2,77 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="@dimen/_100sdp"
+    android:layout_width="wrap_content"
     android:layout_margin="@dimen/_3sdp"
+    android:padding="@dimen/_5sdp"
     android:background="@color/white"
-    android:layout_height="@dimen/_100sdp">
+    android:layout_height="wrap_content">
 
 
     <ImageView
         android:id="@+id/thumbnail"
-        android:layout_width="@dimen/_40sdp"
+        android:layout_width="0dp"
         android:layout_height="@dimen/_50sdp"
-        android:layout_margin="@dimen/_5sdp"
         android:adjustViewBounds="true"
+        android:layout_marginTop="@dimen/_10sdp"
         android:src="@drawable/ic_preview"
         app:cardCornerRadius="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
+        android:id="@+id/namePDF"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="fdbf"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:text="fdbnnnnnnnnnnnnnnnnnnnnnnnnnnnnnf"
+        android:maxLines="1"
+        android:fontFamily="sans-serif"
+        android:ellipsize="end"
         android:textColor="@color/black"
         android:textSize="@dimen/_12sdp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fav"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/thumbnail" />
 
     <TextView
-        android:id="@+id/size"
-        android:layout_width="@dimen/_10sdp"
-        android:layout_height="@dimen/_10sdp"
+        android:id="@+id/sizePDF"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:text="@string/app_name"
-/>
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/namePDF"
+        app:layout_constraintStart_toStartOf="@+id/namePDF"
+        app:layout_constraintTop_toBottomOf="@+id/namePDF" />
 
     <ImageView
         android:id="@+id/fav"
-        android:layout_width="@dimen/_15sdp"
-        android:layout_height="@dimen/_15sdp"
-        android:src="@drawable/favorite"
-      />
-    <ImageView
-        android:id="@+id/option"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:padding="@dimen/_2sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        app:layout_constraintStart_toEndOf="@+id/namePDF"
+        android:src="@drawable/favorite"
+        app:layout_constraintBottom_toBottomOf="@+id/sizePDF"
+        app:layout_constraintEnd_toStartOf="@+id/imageoption"
+        app:layout_constraintTop_toTopOf="@+id/namePDF" />
+
+    <ImageView
+        android:id="@+id/imageoption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_5sdp"
         android:src="@drawable/ic_dots"
- />
+        app:layout_constraintBottom_toBottomOf="@+id/fav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

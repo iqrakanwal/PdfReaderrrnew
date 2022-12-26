@@ -31,8 +31,6 @@ class ExitDeltedialog(var exitDialogCallbacks: ExitDialogCallbacks) : DialogFrag
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         exit.setOnClickListener {
             exitDialogCallbacks.exit()
             dismiss()

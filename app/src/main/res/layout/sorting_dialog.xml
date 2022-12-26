@@ -48,7 +48,7 @@
             android:layout_margin="@dimen/_5sdp"
             android:text="Apply"
             android:textStyle="bold"
-            android:textColor="#36a8ff"
+            android:textColor="#C5283D"
             android:textSize="@dimen/_12sdp" />
 
 
@@ -60,7 +60,7 @@
             android:text="Cancel"
             android:textStyle="bold"
 
-            android:textColor="#36a8ff"
+            android:textColor="#C5283D"
             android:textSize="@dimen/_12sdp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

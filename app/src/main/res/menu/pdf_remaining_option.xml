@@ -9,18 +9,22 @@
     <!--        app:showAsAction="always"-->
     <!--        app:actionViewClass="androidx.appcompat.widget.SearchView" />-->
 
-
+    <item
+        android:id="@+id/print"
+        android:icon="@drawable/printer"
+        app:showAsAction="always"
+        android:title="Share"/>
 
 
     <item
         android:id="@+id/share"
-        android:icon="@drawable/share"
+        android:icon="@drawable/ic_sharetwe"
         app:showAsAction="always"
         android:title="Share"/>
 
     <item
-        android:id="@+id/delete"
-        android:icon="@drawable/ic_delete"
+        android:id="@+id/options"
+        android:icon="@drawable/threedot"
         app:showAsAction="always"
         android:title="delete"/>
 

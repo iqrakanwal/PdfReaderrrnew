@@ -12,8 +12,6 @@ import kotlinx.android.synthetic.main.file_creation_dialog.*
 
 class FileCreatinDialog(var fileCreationInterface: FileCreationInterface): DialogFragment() {
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -13,8 +13,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlin.coroutines.EmptyCoroutineContext.get
 
-class MainViewModel(var application: Context, var filesRepositories: FilesRepositories) :
-    ViewModel() {
+class MainViewModel(var application: Context, var filesRepositories: FilesRepositories) : ViewModel() {
     public var files: LiveData<ArrayList<PdfModel>>? = filesRepositories.getPdfFile()
     private val uiDataStore = UIModePreference(application)
 

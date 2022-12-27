@@ -11,8 +11,7 @@ import com.example.pdfreaderrr.ui.fragments.OnboardingFragment
 class OnboardingViewPagerAdapter(
     fragmentActivity: FragmentActivity,
     private val context: Context
-) :
-    FragmentStateAdapter(fragmentActivity) {
+) : FragmentStateAdapter(fragmentActivity) {
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> OnboardingFragment.newInstance(

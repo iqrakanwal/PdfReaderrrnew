@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.custom_exit_dialog.*
 class ExitDeltedialog(var exitDialogCallbacks: ExitDialogCallbacks) : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 //        val animation: Animation =
 //            AlphaAnimation(
 //                1.0.toFloat(),

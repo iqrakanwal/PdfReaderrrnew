@@ -1,5 +1,4 @@
 package com.example.pdfreaderrr.adaptors
-
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

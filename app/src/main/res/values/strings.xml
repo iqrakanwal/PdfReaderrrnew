@@ -34,7 +34,7 @@
     <string name="Print">Print</string>
     <string name="verticalview">VerticalView</string>
     <string name="light_mode">Light Mode</string>
-    <string name="goto_page">go to page </string>
+    <string name="goto_page">Go to page </string>
     <string name="share">Share</string>
     <string name="go">Go</string>
     <string name="title_activity_settings">SettingsActivity</string>

@@ -6,12 +6,14 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.print.PrintAttributes
 import android.print.PrintDocumentAdapter
 import android.print.PrintManager
 import android.util.Log
 import android.view.*
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.LinearLayoutCompat
@@ -24,6 +26,7 @@ import com.example.pdfreaderrr.R
 import com.example.pdfreaderrr.dialogs.GotoDailog
 import com.example.pdfreaderrr.interfaces.ButtonClick
 import com.example.pdfreaderrr.interfaces.PdfClickedListener
+import com.example.pdfreaderrr.utills.PReaderDocumentAdapter
 import com.example.pdfreaderrr.viewmodels.MainViewModel
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener
@@ -64,14 +67,16 @@ class PdfShowingScreen : AppCompatActivity(), OnPageChangeListener, OnLoadComple
             window.statusBarColor = this.resources.getColor(R.color.white)
         }
         setContentView(R.layout.activity_pdf_showing_screen)
-        setSupportActionBar(toobar);
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar()?.setHomeButtonEnabled(true);
-
         val sports = intent.getStringExtra("Character")
         file = File(sports!!)
         uri = Uri.fromFile(file)
-        toobar.title = file!!.getName()
+
+        setSupportActionBar(toobar);
+        toobar.title = file!!.name
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar()?.setHomeButtonEnabled(true);
+
+
         lifecycleScope.launch {
             mainViewModel.getvalue()
         }
@@ -177,26 +182,23 @@ class PdfShowingScreen : AppCompatActivity(), OnPageChangeListener, OnLoadComple
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         return when (id) {
-
             R.id.options -> {
                 /*        val fm: FragmentManager = supportFragmentManager
                         val editNameDialogFragment: RemainingOptions = RemainingOptions()
                         editNameDialogFragment.show(fm, "RemainingOptions")*/
-
                 val bottomSheetDialog = BottomSheetDialog(this)
                 bottomSheetDialog.setContentView(R.layout.bottom_sheet_options)
-                //    val print = bottomSheetDialog.findViewById<LinearLayoutCompat>(R.id.print)
-
+                val filename = bottomSheetDialog.findViewById<TextView>(R.id.filename)
+                val filepath = bottomSheetDialog.findViewById<TextView>(R.id.filepath)
+                filepath?.text = File(uri.toString()).path
+                filename?.text = File(uri.toString()).name
                 val gotopage = bottomSheetDialog.findViewById<LinearLayoutCompat>(R.id.gotopage)
-                val allignemtn =
-                    bottomSheetDialog.findViewById<LinearLayoutCompat>(R.id.greyscale)
+                val allignemtn = bottomSheetDialog.findViewById<LinearLayoutCompat>(R.id.greyscale)
                 val share = bottomSheetDialog.findViewById<LinearLayoutCompat>(R.id.share)
                 val switchgrey = bottomSheetDialog.findViewById<SwitchCompat>(R.id.grey)
                 /* print?.setOnClickListener {
                      printFile(File(uri.toString()))
                      bottomSheetDialog.dismiss()
-
-
                  }*/
                 gotopage?.setOnClickListener {
                     val fm: FragmentManager = supportFragmentManager
@@ -278,7 +280,8 @@ class PdfShowingScreen : AppCompatActivity(), OnPageChangeListener, OnLoadComple
                 bottomSheetDialog.show()
                 true
             }
-            R.id.print -> {
+            R.id.print->{
+                printFile(file!!)
                 return true
             }
             R.id.share -> {
@@ -427,19 +430,7 @@ class PdfShowingScreen : AppCompatActivity(), OnPageChangeListener, OnLoadComple
 
       }
   */
-    fun printFile(file: File) {
 
-
-/*
-        val mPrintDocumentAdapter: PrintDocumentAdapter = PrintDocumentAdapterHelper(file)
-        val printManager = getSystemService(PRINT_SERVICE) as PrintManager
-        val jobName: String = getString(R.string.app_name).toString() + " Document"
-        if (printManager != null) {
-            printManager.print(jobName, mPrintDocumentAdapter, null)
-
-        }*/
-
-    }
 
     override fun clicked() {
 
@@ -455,5 +446,12 @@ class PdfShowingScreen : AppCompatActivity(), OnPageChangeListener, OnLoadComple
         return true
     }
 
-
+    fun printFile(file: File) {
+        val printManager : PrintManager = getSystemService(Context.PRINT_SERVICE) as PrintManager
+        try {
+            val printAdapter = PReaderDocumentAdapter(File(uri?.getPath()))
+            printManager.print("Document", printAdapter, PrintAttributes.Builder().build())
+        } catch (e : Exception) {
+        }
+    }
 }

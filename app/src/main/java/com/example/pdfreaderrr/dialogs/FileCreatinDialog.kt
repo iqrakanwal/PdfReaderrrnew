@@ -22,8 +22,7 @@ class FileCreatinDialog(var fileCreationInterface: FileCreationInterface): Dialo
         var viewRateUsDialog = inflater.inflate(R.layout.file_creation_dialog, container, false)
         return viewRateUsDialog
     }
-
-
+    
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.filename_et.text

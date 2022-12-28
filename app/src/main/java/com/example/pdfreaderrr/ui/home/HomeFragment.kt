@@ -27,6 +27,7 @@ import com.example.pdfreaderrr.adaptors.VideosAdaptor
 import com.example.pdfreaderrr.dialogs.PermissionDialog
 import com.example.pdfreaderrr.dialogs.SortingDialog
 import com.example.pdfreaderrr.interfaces.ButtonClick
+import com.example.pdfreaderrr.interfaces.OptionMenuClickListener
 import com.example.pdfreaderrr.interfaces.PdfClickedListener
 import com.example.pdfreaderrr.interfaces.SortingListeners
 import com.example.pdfreaderrr.ui.PdfShowingScreen
@@ -40,7 +41,7 @@ import kotlinx.coroutines.runBlocking
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
-class HomeFragment : Fragment(), SortingListeners , ButtonClick{
+class HomeFragment : Fragment(), SortingListeners, ButtonClick, OptionMenuClickListener {
     var videosAdaptor: VideosAdaptor? = null
     lateinit var layoutManager: LinearLayoutManager
     private val model: MainViewModel by sharedViewModel()
@@ -62,16 +63,10 @@ class HomeFragment : Fragment(), SortingListeners , ButtonClick{
                 PermissionDialog(this)
             editNameDialogFragment.show(fm, "permission")
         }
-
-
-
-
     }
 
 
-    fun setRecyclarView(){
-
-
+    fun setRecyclarView() {
         listview.setOnClickListener {
             if (PreferencesUtility.getInstance(context).isAlbumsInGrid) {
                 PreferencesUtility.getInstance(context).setAlbumsInGrid(false)
@@ -94,16 +89,9 @@ class HomeFragment : Fragment(), SortingListeners , ButtonClick{
     }
 
 
-
     private fun setLayoutManager() {
-
-
         model.files?.observe(requireActivity()) {
             Log.e("ghhgh", "true")
-
-
-
-
             if (PreferencesUtility.getInstance(activity).isAlbumsInGrid()) {
                 val gridManager = GridLayoutManager(activity, 2)
                 videos.setLayoutManager(
@@ -111,14 +99,14 @@ class HomeFragment : Fragment(), SortingListeners , ButtonClick{
                 )
                 array.clear()
                 array.addAll(it)
-                videosAdaptor = VideosAdaptor(requireContext(), array, object : PdfClickedListener {
-                    override fun onPdfCLicked(uri: Uri) {
-                        val intent = Intent(requireContext(), PdfShowingScreen::class.java)
-                        intent.putExtra("Character", uri.toString())
-                        startActivity(intent)
-                    }
-
-                })
+                videosAdaptor =
+                    VideosAdaptor(this, requireContext(), array, object : PdfClickedListener {
+                        override fun onPdfCLicked(uri: Uri) {
+                            val intent = Intent(requireContext(), PdfShowingScreen::class.java)
+                            intent.putExtra("Character", uri.toString())
+                            startActivity(intent)
+                        }
+                    })
 
             } else {
                 layoutManager =
@@ -133,16 +121,17 @@ class HomeFragment : Fragment(), SortingListeners , ButtonClick{
                 )
                 array.clear()
                 array.addAll(it)
-                videosAdaptor = VideosAdaptor(requireContext(), array, object : PdfClickedListener {
-                    override fun onPdfCLicked(uri: Uri) {
-                        val intent = Intent(requireContext(), PdfShowingScreen::class.java)
-                        intent.putExtra("Character", uri.toString())
-                        startActivity(intent)
-                    }
-                })
+                videosAdaptor =
+                    VideosAdaptor(this, requireContext(), array, object : PdfClickedListener {
+                        override fun onPdfCLicked(uri: Uri) {
+                            val intent = Intent(requireContext(), PdfShowingScreen::class.java)
+                            intent.putExtra("Character", uri.toString())
+                            startActivity(intent)
+                        }
+                    })
             }
-          /*  videos.setAdapter(videosAdaptor)
-            videosAdaptor?.notifyDataSetChanged()*/
+            /*  videos.setAdapter(videosAdaptor)
+              videosAdaptor?.notifyDataSetChanged()*/
             videos.adapter = videosAdaptor
             //Log.e("jdkdjf", "${it.size}")
         }
@@ -194,7 +183,12 @@ class HomeFragment : Fragment(), SortingListeners , ButtonClick{
             try {
                 val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
                 intent.addCategory("android.intent.category.DEFAULT")
-                intent.data = Uri.parse(String.format("package:%s", requireContext().applicationContext.packageName))
+                intent.data = Uri.parse(
+                    String.format(
+                        "package:%s",
+                        requireContext().applicationContext.packageName
+                    )
+                )
                 startActivityForResult(intent, 2296)
             } catch (e: Exception) {
                 val intent = Intent()
@@ -218,7 +212,11 @@ class HomeFragment : Fragment(), SortingListeners , ButtonClick{
                 if (Environment.isExternalStorageManager()) {
                     setRecyclarView()
                 } else {
-                    Toast.makeText(requireContext(), "Allow permission for storage access!", Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        requireContext(),
+                        "Allow permission for storage access!",
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                 }
             }
@@ -236,11 +234,15 @@ class HomeFragment : Fragment(), SortingListeners , ButtonClick{
                 val READ_EXTERNAL_STORAGE = grantResults[0] == PackageManager.PERMISSION_GRANTED
                 val WRITE_EXTERNAL_STORAGE = grantResults[1] == PackageManager.PERMISSION_GRANTED
                 if (READ_EXTERNAL_STORAGE && WRITE_EXTERNAL_STORAGE) {
-                   // loadAllFilesToDatabase()
-setRecyclarView()
+                    // loadAllFilesToDatabase()
+                    setRecyclarView()
 
                 } else {
-                    Toast.makeText(requireContext(), "Allow permission for storage access!", Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        requireContext(),
+                        "Allow permission for storage access!",
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                 }
             }
@@ -250,6 +252,16 @@ setRecyclarView()
 
     override fun clicked() {
         requestPermission()
+    }
+
+
+    override fun delete(uri: PdfModel) {
+    }
+
+    override fun rename(uri: PdfModel) {
+    }
+
+    override fun info(uri: PdfModel) {
     }
 
 }

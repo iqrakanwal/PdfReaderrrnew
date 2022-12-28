@@ -30,7 +30,7 @@ public class PreferencesUtility {
         return sInstance;
     }
     public boolean isAlbumsInGrid() {
-        return mPreferences.getBoolean(TOGGLE_ALBUM_GRID, true);
+        return mPreferences.getBoolean(TOGGLE_ALBUM_GRID, false);
     }
 
     public void setAlbumsInGrid(final boolean b) {

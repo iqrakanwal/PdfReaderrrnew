@@ -11,7 +11,6 @@ import com.example.pdfreaderrr.interfaces.SortingListeners
 
 class SortingDialog(var sortingListeners: SortingListeners):DialogFragment() {
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

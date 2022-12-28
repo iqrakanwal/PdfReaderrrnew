@@ -28,13 +28,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_5sdp"
-        android:text="fdbnnnnnnnnnnnnnnnnnnnnnnnnnnnnnf"
+        android:text="fdbnnnnnnnnnnnjhjhnnnnnnnnnnnnnnnnnnf"
         android:maxLines="1"
         android:fontFamily="sans-serif"
         android:ellipsize="end"
         android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/imageoption"
         android:textSize="@dimen/_12sdp"
-        app:layout_constraintEnd_toStartOf="@+id/fav"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/thumbnail" />
 
@@ -46,24 +46,13 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="@string/app_name"
+
         android:textSize="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/namePDF"
         app:layout_constraintStart_toStartOf="@+id/namePDF"
         app:layout_constraintTop_toBottomOf="@+id/namePDF" />
 
-    <ImageView
-        android:id="@+id/fav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_5sdp"
-        android:padding="@dimen/_2sdp"
-        android:layout_marginStart="@dimen/_5sdp"
-        app:layout_constraintStart_toEndOf="@+id/namePDF"
-        android:src="@drawable/favorite"
-        app:layout_constraintBottom_toBottomOf="@+id/sizePDF"
-        app:layout_constraintEnd_toStartOf="@+id/imageoption"
-        app:layout_constraintTop_toTopOf="@+id/namePDF" />
 
     <ImageView
         android:id="@+id/imageoption"
@@ -71,8 +60,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_5sdp"
         android:src="@drawable/ic_dots"
-        app:layout_constraintBottom_toBottomOf="@+id/fav"
+        app:layout_constraintBottom_toBottomOf="@+id/sizePDF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/fav" />
+        android:layout_marginStart="@dimen/_15sdp"
+        app:layout_constraintStart_toEndOf="@+id/namePDF"
+        app:layout_constraintTop_toTopOf="@+id/namePDF" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

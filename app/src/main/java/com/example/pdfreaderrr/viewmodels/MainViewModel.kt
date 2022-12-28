@@ -23,7 +23,6 @@ class MainViewModel(var application: Context, var filesRepositories: FilesReposi
     fun setDarkTheme(darktheme: String) {
         filesRepositories.setDarkTheme(darktheme)
     }
-
     val getUIMode = uiDataStore.uiMode
     val getVerticalView = uiDataStore.isVerticale
     val getNightMode = uiDataStore.isNightMode

@@ -56,4 +56,12 @@ class ExitDeltedialog(var exitDialogCallbacks: ExitDialogCallbacks) : DialogFrag
         );
         return view
     }
+
+
+    override fun onResume() {
+        super.onResume()
+        val width = (resources.displayMetrics.widthPixels * 0.90).toInt()
+        val height = ViewGroup.LayoutParams.WRAP_CONTENT
+        dialog!!.window!!.setLayout(width, height)
+    }
 }

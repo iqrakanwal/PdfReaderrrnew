@@ -75,7 +75,6 @@ class FilesManager(mContext: Context) {
         try {
             pdfFilesList.postValue(
                 readFiles(
-
                     arrayOf(pdf),
                     ((MediaStore.Files.FileColumns.MIME_TYPE + "=?"))
                 )
@@ -185,51 +184,51 @@ class FilesManager(mContext: Context) {
     }
 
     private fun setPdfModel(cursor: Cursor): PdfModel {
-        val pdfModel = PdfModel()
-        if (cursor != null) {
+
+        val pdfModel = PdfModel(cursor.getString(
+            cursor.getColumnIndexOrThrow(
+                MediaStore.MediaColumns.TITLE
+            )
+        ),    getReadableSize(
+            cursor.getLong(
+                cursor.getColumnIndexOrThrow(
+                    MediaStore.MediaColumns.SIZE
+                )
+            )
+        ), cursor.getString(
+            cursor.getColumnIndexOrThrow(
+                MediaStore.MediaColumns.DATA
+            )
+        ), false, false,  getReadableDate(
+            cursor.getLong(
+                cursor.getColumnIndexOrThrow(
+                    MediaStore.Files.FileColumns.DATE_MODIFIED
+                )
+            )
+        ) )
+    /*    if (cursor != null) {
             try {
                 pdfModel.setMFileDate(
-                    getReadableDate(
-                        cursor.getLong(
-                            cursor.getColumnIndexOrThrow(
-                                MediaStore.Files.FileColumns.DATE_MODIFIED
-                            )
-                        )
-                    )
+
                 )
                 pdfModel.setMAbsolute_path(
-                    cursor.getString(
-                        cursor.getColumnIndexOrThrow(
-                            MediaStore.MediaColumns.DATA
-                        )
-                    )
+
                 )
                 pdfModel.setMFile_name(
-                    cursor.getString(
-                        cursor.getColumnIndexOrThrow(
-                            MediaStore.MediaColumns.TITLE
-                        )
-                    )
+
                 )
                 pdfModel.setMFile_size(
-                    getReadableSize(
-                        cursor.getLong(
-                            cursor.getColumnIndexOrThrow(
-                                MediaStore.MediaColumns.SIZE
-                            )
-                        )
-                    )
+
                 )
                 pdfModel.isSelected = false
                 pdfModel.setFileType(getFileType(pdfModel.getMAbsolute_path()).name)
                 if (pdfModel.getMAbsolute_path() != null) {
-                    val file = File(pdfModel.getMAbsolute_path())
-                    pdfModel.setMParent_file(file.parent)
+
                 }
             } catch (ex: Exception) {
                 ex.printStackTrace()
             }
-        }
+        }*/
         return pdfModel
     }
 

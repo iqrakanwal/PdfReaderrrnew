@@ -77,12 +77,6 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_5sdp"
-            android:id="@+id/fav"
-            android:src="@drawable/favorite"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:src="@drawable/threedot"
             android:layout_marginEnd="@dimen/_10sdp"
             android:id="@+id/imageoption"/>

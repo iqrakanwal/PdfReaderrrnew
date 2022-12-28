@@ -1,4 +1,5 @@
 package com.example.pdfreaderrr.dialogs
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +37,13 @@ class GotoDailog(var callbackMethod: (Int) -> Unit) : DialogFragment() {
 
                 dismiss()
             }
+
+            dismiss()
+        }
+
+
+        this.cancle.setOnClickListener {
+
 
             dismiss()
         }

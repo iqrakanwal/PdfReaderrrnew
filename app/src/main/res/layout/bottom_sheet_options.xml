@@ -8,43 +8,6 @@
     android:layout_height="wrap_content">
 
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/fileid"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-        <TextView
-            android:id="@+id/filename"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_13sdp"
-            android:layout_marginTop="@dimen/_13sdp"
-
-            android:text="kjhkjghaj"
-            android:textColor="@color/purple_500"
-            android:textSize="@dimen/_13sdp" />
-
-
-        <TextView
-            android:id="@+id/filepath"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_13sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_13sdp"
-            android:text="filepath"
-
-            android:textColor="@color/grey" />
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
     <!--
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -92,11 +55,52 @@
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/fileid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/filename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_13sdp"
+
+            android:text="kjhkjghaj"
+            android:textColor="@color/purple_500"
+            android:textSize="@dimen/_13sdp" />
+
+
+        <TextView
+            android:id="@+id/filepath"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_13sdp"
+            android:text="filepath"
+            android:textColor="@color/grey"
+
+            android:textSize="@dimen/_10sdp" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/share"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:padding="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="@+id/fileid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fileid">
@@ -108,7 +112,8 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_5sdp"
             android:padding="@dimen/_2sdp"
-            android:src="@drawable/share" />
+            android:tint="@color/purple_500"
+            android:src="@drawable/ic_sharetwe" />
 
 
         <TextView
@@ -129,6 +134,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         android:padding="@dimen/_5sdp"
         app:layout_constraintEnd_toEndOf="@+id/share"
         app:layout_constraintStart_toStartOf="@+id/share"
@@ -141,15 +148,14 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_5sdp"
             android:padding="@dimen/_2sdp"
-
-            android:src="@drawable/ic_staron" />
+            android:src="@drawable/share"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/_5sdp"
-            android:text="Favourite"
+            android:text="Go to Page"
             android:textColor="@color/black"
             android:textSize="@dimen/_12sdp"
 
@@ -165,7 +171,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:padding="@dimen/_5sdp"
-
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -178,7 +185,7 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_5sdp"
 
-            android:padding="@dimen/_2sdp"
+            android:padding="@dimen/_4sdp"
             android:src="@drawable/horizontal_and_vertical_view" />
 
 
@@ -203,6 +210,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/greyscale"
         app:layout_constraintVertical_bias="0.0">
@@ -211,6 +220,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:background="#E3E3E3"
             android:thumb="@drawable/thumb"
             app:track="@drawable/track"
             android:tint="@color/black" />

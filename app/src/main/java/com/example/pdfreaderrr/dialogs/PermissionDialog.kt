@@ -27,7 +27,6 @@ class PermissionDialog(var buttonClick: ButtonClick) : DialogFragment() {
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
